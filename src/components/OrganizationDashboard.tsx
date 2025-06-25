@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users, DollarSign, FileText, TrendingUp, Send, Download, Eye, Plus } from "lucide-react";
+import { Users, DollarSign, FileText, TrendingUp, Send, Download, Eye, Plus, CreditCard } from "lucide-react";
 
 const OrganizationDashboard = () => {
   const recentInvoices = [
@@ -24,6 +24,34 @@ const OrganizationDashboard = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Organization Dashboard</h1>
           <p className="text-gray-600">Sunshine Elementary School</p>
         </div>
+
+        {/* Subscription Status Banner */}
+        <Card className="mb-8 border-l-4 border-l-blue-600">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-lg">ParentPay+ Subscription</CardTitle>
+                <CardDescription>Monthly subscription for unlimited family payments</CardDescription>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold text-blue-600">$29.99/month</p>
+                <p className="text-sm text-gray-500">Next billing: July 25, 2024</p>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Badge variant="default">Active</Badge>
+                <span className="text-sm text-gray-600">324 families connected</span>
+              </div>
+              <Button variant="outline" size="sm">
+                <CreditCard className="h-4 w-4 mr-2" />
+                Manage Billing
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
