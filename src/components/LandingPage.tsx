@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, CreditCard, Users, Building2, TrendingDown, Shield, Clock } from "lucide-react";
 
-const LandingPage = () => {
+interface LandingPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+const LandingPage = ({ onNavigate }: LandingPageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
       {/* Hero Section */}
@@ -13,14 +17,23 @@ const LandingPage = () => {
             School Payments Made Simple
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Pay for lunch accounts, summer camps, and activities with a flat monthly subscription. 
-            No more transaction fees eating into your budget.
+            Pay for lunch accounts, summer camps, and activities with no transaction fees for families. 
+            Schools pay one simple monthly fee for unlimited family payments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg"
+              onClick={() => onNavigate?.('free-trial')}
+            >
               Start Free Trial
             </Button>
-            <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-8 py-3 text-lg"
+              onClick={() => onNavigate?.('learn-more')}
+            >
               Learn More
             </Button>
           </div>
@@ -37,9 +50,9 @@ const LandingPage = () => {
             <Card className="border-2 hover:border-blue-200 transition-colors">
               <CardHeader>
                 <TrendingDown className="h-12 w-12 text-green-600 mb-4" />
-                <CardTitle>Save on Fees</CardTitle>
+                <CardTitle>No Fees for Families</CardTitle>
                 <CardDescription>
-                  Pay just $5/month instead of $2-3 per transaction. Save hundreds annually.
+                  Families pay zero transaction fees. Schools cover the platform cost at just $50/month.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -73,50 +86,25 @@ const LandingPage = () => {
           <h3 className="text-3xl font-bold text-gray-900 mb-8">
             Simple, Transparent Pricing
           </h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 border-blue-200 relative">
-              <CardHeader className="text-center">
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <CardTitle className="text-2xl">For Parents</CardTitle>
-                <CardDescription className="text-3xl font-bold text-gray-900 mt-2">
-                  $5<span className="text-sm font-normal text-gray-600">/month</span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-left">
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-green-600 mr-3" />
-                    Unlimited payments
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-green-600 mr-3" />
-                    Auto-pay setup
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-green-600 mr-3" />
-                    Receipt tracking
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-green-600 mr-3" />
-                    Multiple children support
-                  </li>
-                </ul>
-                <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">
-                  Start Free Trial
-                </Button>
-              </CardContent>
-            </Card>
-
+          <div className="max-w-md mx-auto">
             <Card className="border-2 border-green-200">
               <CardHeader className="text-center">
                 <Building2 className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <CardTitle className="text-2xl">For Organizations</CardTitle>
+                <CardTitle className="text-2xl">For Schools & Organizations</CardTitle>
                 <CardDescription className="text-3xl font-bold text-gray-900 mt-2">
-                  2%<span className="text-sm font-normal text-gray-600"> of transactions</span>
+                  $50<span className="text-sm font-normal text-gray-600">/month</span>
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-left">
+                  <li className="flex items-center">
+                    <Check className="h-5 w-5 text-green-600 mr-3" />
+                    Unlimited family payments
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="h-5 w-5 text-green-600 mr-3" />
+                    Zero fees for families
+                  </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-600 mr-3" />
                     Send invoices easily
@@ -134,8 +122,11 @@ const LandingPage = () => {
                     Financial reporting
                   </li>
                 </ul>
-                <Button className="w-full mt-6 bg-green-600 hover:bg-green-700">
-                  Contact Sales
+                <Button 
+                  className="w-full mt-6 bg-green-600 hover:bg-green-700"
+                  onClick={() => onNavigate?.('free-trial')}
+                >
+                  Start Free Trial
                 </Button>
               </CardContent>
             </Card>
@@ -147,12 +138,17 @@ const LandingPage = () => {
       <section className="px-6 py-20 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-6">
-            Ready to Save on School Payments?
+            Ready to Eliminate Transaction Fees?
           </h3>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of families already saving money with ParentPay+
+            Join schools nationwide already providing fee-free payments to families
           </p>
-          <Button size="lg" variant="secondary" className="px-8 py-3 text-lg">
+          <Button 
+            size="lg" 
+            variant="secondary" 
+            className="px-8 py-3 text-lg"
+            onClick={() => onNavigate?.('free-trial')}
+          >
             Start Your Free Trial Today
           </Button>
         </div>

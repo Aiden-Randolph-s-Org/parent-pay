@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, DollarSign, FileText, Plus, Settings, CreditCard } from "lucide-react";
 
-const ParentDashboard = () => {
+interface ParentDashboardProps {
+  onNavigate?: (page: string) => void;
+}
+
+const ParentDashboard = ({ onNavigate }: ParentDashboardProps) => {
   const recentPayments = [
     { id: 1, description: "Lunch Account - Emma Wilson", amount: 75.00, date: "2024-06-20", status: "Completed" },
     { id: 2, description: "Summer Camp - Soccer Skills", amount: 250.00, date: "2024-06-18", status: "Completed" },
@@ -22,11 +26,11 @@ const ParentDashboard = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Parent Dashboard</h1>
-          <p className="text-gray-600">Manage payments for the Wilson family - No monthly fees!</p>
+          <p className="text-gray-600">Manage payments for the Wilson family - No transaction fees ever!</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">This Month</CardTitle>
@@ -48,17 +52,6 @@ const ParentDashboard = () => {
               <p className="text-xs text-muted-foreground">2 payments scheduled</p>
             </CardContent>
           </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Fees Saved</CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-600">$42.50</div>
-              <p className="text-xs text-muted-foreground">vs. traditional payment fees</p>
-            </CardContent>
-          </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -67,7 +60,11 @@ const ParentDashboard = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Recent Payments</CardTitle>
-                <Button variant="outline" size="sm">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => onNavigate?.('new-payment')}
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   New Payment
                 </Button>
@@ -99,7 +96,11 @@ const ParentDashboard = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Upcoming Payments</CardTitle>
-                <Button variant="outline" size="sm">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => onNavigate?.('manage-autopay')}
+                >
                   <Settings className="h-4 w-4 mr-2" />
                   Manage Auto-Pay
                 </Button>
@@ -135,19 +136,35 @@ const ParentDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('make-payment')}
+              >
                 <Plus className="h-6 w-6 mb-2" />
                 Make Payment
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('autopay-settings')}
+              >
                 <Settings className="h-6 w-6 mb-2" />
                 Auto-Pay Settings
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('download-receipts')}
+              >
                 <FileText className="h-6 w-6 mb-2" />
                 Download Receipts
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('bank-account')}
+              >
                 <CreditCard className="h-6 w-6 mb-2" />
                 Bank Account
               </Button>

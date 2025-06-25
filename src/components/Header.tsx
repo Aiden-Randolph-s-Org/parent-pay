@@ -50,10 +50,18 @@ const Header = ({ currentView, onViewChange }: HeaderProps) => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => onViewChange('sign-in')}
+          >
             Sign In
           </Button>
-          <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+          <Button 
+            size="sm" 
+            className="bg-blue-600 hover:bg-blue-700"
+            onClick={() => onViewChange('get-started')}
+          >
             Get Started
           </Button>
         </div>

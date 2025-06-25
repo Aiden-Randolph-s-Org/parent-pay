@@ -1,10 +1,13 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, DollarSign, FileText, TrendingUp, Send, Download, Eye, Plus, CreditCard } from "lucide-react";
 
-const OrganizationDashboard = () => {
+interface OrganizationDashboardProps {
+  onNavigate?: (page: string) => void;
+}
+
+const OrganizationDashboard = ({ onNavigate }: OrganizationDashboardProps) => {
   const recentInvoices = [
     { id: 1, recipient: "Wilson Family", description: "Summer Camp Registration", amount: 250.00, status: "Paid", date: "2024-06-20" },
     { id: 2, recipient: "Johnson Family", description: "Art Supplies", amount: 25.00, status: "Pending", date: "2024-06-18" },
@@ -34,7 +37,7 @@ const OrganizationDashboard = () => {
                 <CardDescription>Monthly subscription for unlimited family payments</CardDescription>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-blue-600">$29.99/month</p>
+                <p className="text-2xl font-bold text-blue-600">$50.00/month</p>
                 <p className="text-sm text-gray-500">Next billing: July 25, 2024</p>
               </div>
             </div>
@@ -45,7 +48,11 @@ const OrganizationDashboard = () => {
                 <Badge variant="default">Active</Badge>
                 <span className="text-sm text-gray-600">324 families connected</span>
               </div>
-              <Button variant="outline" size="sm">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => onNavigate?.('manage-billing')}
+              >
                 <CreditCard className="h-4 w-4 mr-2" />
                 Manage Billing
               </Button>
@@ -106,7 +113,10 @@ const OrganizationDashboard = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Recent Invoices</CardTitle>
-                <Button size="sm">
+                <Button 
+                  size="sm"
+                  onClick={() => onNavigate?.('new-invoice')}
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   New Invoice
                 </Button>
@@ -185,23 +195,43 @@ const OrganizationDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('send-invoice')}
+              >
                 <Send className="h-6 w-6 mb-2" />
                 Send Invoice
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('view-reports')}
+              >
                 <Eye className="h-6 w-6 mb-2" />
                 View Reports
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('export-data')}
+              >
                 <Download className="h-6 w-6 mb-2" />
                 Export Data
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('manage-families')}
+              >
                 <Users className="h-6 w-6 mb-2" />
                 Manage Families
               </Button>
-              <Button variant="outline" className="h-20 flex-col">
+              <Button 
+                variant="outline" 
+                className="h-20 flex-col"
+                onClick={() => onNavigate?.('payment-history')}
+              >
                 <FileText className="h-6 w-6 mb-2" />
                 Payment History
               </Button>
